@@ -4,17 +4,18 @@ def calculate_expression(expression):
     (x, sign, y) = expression.split(' ')
     x = float(x)
     y = float(y)
-
-    if sign == "+":
-        result = add(x, y)
-    elif sign == "-":
-        result = subtract(x, y)
-    elif sign == "*":
-        result = multiply(x, y)
-    elif sign == "/":
-        result = divide(x, y)
-    elif sign == "^":
-        result = power(x, y)
+    
+    execute_command = {
+        '+': add,
+        '-': subtract,
+        '*': multiply,
+        '/': divide,
+        '^': power,
+    }
+    
+    if sign in execute_command:
+        execute_command[sign](x, y)
     else:
         raise Exception(f"Invalid sign {sign}")
+
     return f'{result:.2f}'
